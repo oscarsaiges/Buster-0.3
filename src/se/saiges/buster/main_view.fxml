@@ -1,0 +1,315 @@
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<BorderPane
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="se.saiges.buster.MainController"
+        fx:id="mainWindow">
+
+    <top>
+        <MenuBar>
+            <Menu text="Files">
+                <CheckMenuItem text="Show owned" fx:id="showOwned" onAction="#showOwnedAnimals"/>
+                <CheckMenuItem text="Show all" fx:id="showAll" onAction="#showAllAnimals"/>
+                <CheckMenuItem text="Show not owned" fx:id="showNotOwned" onAction="#showNotOwnedAnimals"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Exit" onAction="#exitProgram"/>
+            </Menu>
+            <Menu text="Animal">
+                <MenuItem text="New Bunny" onAction="#createAnimal"/>
+                <MenuItem text="New Litter" onAction="#createLitter"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Edit Animal" onAction="#updateSelectedAnimal"/>
+                <MenuItem text="Remove" onAction="#removeSelectedAnimal"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Add Parents..." onAction="#addParents"/>
+                <SeparatorMenuItem/>
+                <CheckMenuItem text="Is owned" fx:id="checkIsOwned" onAction="#checkIsOwned"/>
+            </Menu>
+            <Menu text="Help">
+                <MenuItem text="About"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <left>
+        <VBox>
+            <padding>
+                <Insets top="10" left="10" bottom="10" right="10"/>
+            </padding>
+            <TreeView fx:id="animalTreeView" />
+        </VBox>
+    </left>
+
+    <center>
+        <VBox>
+            <padding>
+                <Insets top="10" left="10" bottom="10" right="10"/>
+            </padding>
+
+            <ImageView fx:id="animalImage">
+            </ImageView>
+
+            <VBox alignment="CENTER">
+                <HBox>
+                    <Label text="Name: "/>
+                    <Label fx:id="animalNameLabel"/>
+                </HBox>
+                <HBox>
+                    <Label text="Breeder: "/>
+                    <Label fx:id="animalBreederLabel"/>
+                </HBox>
+                <HBox>
+                    <Label text="Date of Birth: "/>
+                    <Label fx:id="animalDateLabel"/>
+                </HBox>
+                <HBox>
+                    <Label text="Sex: "/>
+                    <Label fx:id="animalSexLabel"/>
+                </HBox>
+                <HBox>
+                    <Label text="Breed: "/>
+                    <Label fx:id="animalBreedLabel"/>
+                </HBox>
+                <HBox>
+                    <Label text="Color: "/>
+                    <Label fx:id="animalColorLabel"/>
+                </HBox>
+                <HBox>
+                    <Label text="Pattern: "/>
+                    <Label fx:id="animalPatternLabel"/>
+                </HBox>
+                <HBox>
+                    <Label text="Eye color: "/>
+                    <Label fx:id="animalEyeColorLabel"/>
+                </HBox>
+            </VBox>
+            <Separator/>
+            <HBox>
+                <VBox prefWidth="500">
+                    <HBox>
+                        <Label text="Mother: "/>
+                        <Label fx:id="motherNameLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Breeder: "/>
+                        <Label fx:id="motherBreederLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Date of Birth: "/>
+                        <Label fx:id="motherDateLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Breed: "/>
+                        <Label fx:id="motherBreedLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Color: "/>
+                        <Label fx:id="motherColorLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Pattern: "/>
+                        <Label fx:id="motherPatternLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Eye color: "/>
+                        <Label fx:id="motherEyeColorLabel"/>
+                    </HBox>
+                </VBox>
+                <Separator orientation="VERTICAL"/>
+                <VBox prefWidth="500">
+                    <HBox>
+                        <Label text="Father: "/>
+                        <Label fx:id="fatherNameLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Breeder: "/>
+                        <Label fx:id="fatherBreederLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Date of Birth: "/>
+                        <Label fx:id="fatherDateLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Breed: "/>
+                        <Label fx:id="fatherBreedLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Color: "/>
+                        <Label fx:id="fatherColorLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Pattern: "/>
+                        <Label fx:id="fatherPatternLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Eye color: "/>
+                        <Label fx:id="fatherEyeColorLabel"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+            <Separator/>
+            <HBox>
+                <VBox prefWidth="250">
+                    <HBox>
+                        <Label text="Grandmother: "/>
+                        <Label fx:id="mGrandMotherNameLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Breeder: "/>
+                        <Label fx:id="mGrandMotherBreederLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Date of Birth: "/>
+                        <Label fx:id="mGrandMotherDateLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Breed: "/>
+                        <Label fx:id="mGrandMotherBreedLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Color: "/>
+                        <Label fx:id="mGrandMotherColorLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Pattern: "/>
+                        <Label fx:id="mGrandMotherPatternLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Eye color: "/>
+                        <Label fx:id="mGrandMotherEyeColorLabel"/>
+                    </HBox>
+                </VBox>
+                <Separator orientation="VERTICAL"/>
+                <VBox prefWidth="250">
+                    <HBox>
+                        <Label text="Grandfather: "/>
+                        <Label fx:id="mGrandFatherNameLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Breeder: "/>
+                        <Label fx:id="mGrandFatherBreederLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Date of Birth: "/>
+                        <Label fx:id="mGrandFatherDateLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Breed: "/>
+                        <Label fx:id="mGrandFatherBreedLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Color: "/>
+                        <Label fx:id="mGrandFatherColorLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Pattern: "/>
+                        <Label fx:id="mGrandFatherPatternLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Eye color: "/>
+                        <Label fx:id="mGrandFatherEyeColorLabel"/>
+                    </HBox>
+                </VBox>
+                <Separator orientation="VERTICAL"/>
+                <VBox prefWidth="250">
+                    <HBox>
+                        <Label text="Grandmother: "/>
+                        <Label fx:id="fGrandMotherNameLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Breeder: "/>
+                        <Label fx:id="fGrandMotherBreederLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Date of Birth: "/>
+                        <Label fx:id="fGrandMotherDateLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Breed: "/>
+                        <Label fx:id="fGrandMotherBreedLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Color: "/>
+                        <Label fx:id="fGrandMotherColorLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Pattern: "/>
+                        <Label fx:id="fGrandMotherPatternLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Eye color: "/>
+                        <Label fx:id="fGrandMotherEyeColorLabel"/>
+                    </HBox>
+                </VBox>
+                <Separator orientation="VERTICAL"/>
+                <VBox prefWidth="250">
+                    <HBox>
+                        <Label text="Grandmother: "/>
+                        <Label fx:id="fGrandFatherNameLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Breeder: "/>
+                        <Label fx:id="fGrandFatherBreederLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Date of Birth: "/>
+                        <Label fx:id="fGrandFatherDateLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Breed: "/>
+                        <Label fx:id="fGrandFatherBreedLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Color: "/>
+                        <Label fx:id="fGrandFatherColorLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Pattern: "/>
+                        <Label fx:id="fGrandFatherPatternLabel"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Eye color: "/>
+                        <Label fx:id="fGrandFatherEyeColorLabel"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+            <Separator>
+                <padding>
+                    <Insets bottom="10" />
+                </padding>
+            </Separator>
+            <TableView>
+                <padding>
+                    <Insets top="10" left="10" bottom="10" right="10"/>
+                </padding>
+                <columns>
+                    <TableColumn text="row 1" />
+                    <TableColumn text="row 2" />
+                </columns>
+
+            </TableView>
+        </VBox>
+    </center>
+
+    <bottom>
+<!--        <HBox>-->
+<!--            <Button text="Create new" onAction="#createAnimal">-->
+<!--                <font>-->
+<!--                    <Font size="20"/>-->
+<!--                </font>-->
+<!--            </Button>-->
+<!--            <Button text="Remove" onAction="#removeSelectedAnimal">-->
+<!--                <font>-->
+<!--                    <Font size="20"/>-->
+<!--                </font>-->
+<!--            </Button>-->
+<!--            <Button text="Edit" onAction="#updateSelectedAnimal">-->
+<!--                <font>-->
+<!--                    <Font size="20"/>-->
+<!--                </font>-->
+<!--            </Button>-->
+<!--        </HBox>-->
+    </bottom>
+</BorderPane>

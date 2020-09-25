@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="se.saiges.buster.controllers.AddLitterController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <left>
+        <GridPane vgap="5" hgap="5">
+
+            <Label text="Chose Mother " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <ComboBox fx:id="motherOfLitter" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="200" />
+
+            <Label text="Chose Father " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <ComboBox fx:id="fatherOfLitter" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="200" />
+
+            <Label text="Date of Birth: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <DatePicker fx:id="dateOfBirth" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="200" />
+
+            <Label text="Amount Born: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField fx:id="born" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+            <Label text="Amount Alive: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <TextField fx:id="alive" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+            <Label text="Amount Defect: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <TextField fx:id="defect" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+            <Label text="Amount Females: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+            <TextField fx:id="females" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+            <Label text="Amount Males: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+            <TextField fx:id="males" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+
+        </GridPane>
+    </left>
+
+    <right>
+        <VBox>
+            <padding>
+                <Insets left="10" top="10" right="10" bottom="10" />
+            </padding>
+            <HBox>
+                <Button text="Add Animal" onAction="#addAnimal"/>
+                <Button text="Remove Animal" onAction="#removeAnimal" />
+            </HBox>
+            <ListView fx:id="litterListView" />
+        </VBox>
+    </right>
+
+</BorderPane>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.CheckBox?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="se.saiges.buster.controllers.AddAnimalController"
+            prefHeight="400" prefWidth="350">
+
+    <top>
+        <VBox>
+            <Label text="This is a where you create a new animal. The new animal will be shown in the list to the left when finished. Please enter all information below, press OK to continue. "
+            wrapText="true"/>
+            <Separator />
+        </VBox>
+    </top>
+
+    <center>
+        <GridPane vgap="5" hgap="5">
+            <Label text="Name:" textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="animalName" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="200" />
+
+            <Label fx:id="textDateOfBirth" text="Born: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <DatePicker fx:id="dateOfBirth" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="200" />
+
+            <Label text="Race: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <ComboBox fx:id="animalBreed" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="200" />
+
+            <Label text="Sex: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <ComboBox fx:id="animalSex" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="200" />
+
+            <Label text="Color: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <ComboBox fx:id="animalColor" GridPane.columnIndex="1" GridPane.rowIndex="4" prefWidth="200" />
+
+            <Label text="Coating: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <ComboBox fx:id="animalPattern" GridPane.columnIndex="1" GridPane.rowIndex="5" prefWidth="200" />
+
+            <Label text="Fur: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+            <ComboBox fx:id="animalFurType" GridPane.columnIndex="1" GridPane.rowIndex="6" prefWidth="200" />
+
+            <Label text="Eye color: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+            <ComboBox fx:id="animalEyeColor" GridPane.columnIndex="1" GridPane.rowIndex="7" prefWidth="200" />
+
+            <Label fx:id="textLitter" text="Add to existing litter: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+            <ComboBox fx:id="litter" GridPane.columnIndex="1" GridPane.rowIndex="8" prefWidth="200"/>
+
+            <Label text="Owned by you: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+            <CheckBox fx:id="animalIsOwned" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+        </GridPane>
+    </center>
+</BorderPane>

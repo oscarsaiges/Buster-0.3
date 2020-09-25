@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="se.saiges.buster.controllers.BreederController"
+          prefHeight="300.0" prefWidth="300.0"
+          fx:id="chooseBreederWindow">
+
+    <ListView GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="3" fx:id="breederListView"/>
+
+    <VBox GridPane.rowIndex="0" GridPane.columnIndex="4">
+        <GridPane>
+
+            <padding>
+                <Insets top="10" left="10" bottom="10" right="10" />
+            </padding>
+
+            <Label text="Uppfödare: " GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <Label fx:id="labelBreeder" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+            <Label text="Namn: " GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <Label fx:id="labelBreederName" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+            <Label text="Email: " GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <Label fx:id="labelBreederEmail" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+            <Label text="Address: " GridPane.rowIndex="3" GridPane.columnIndex="0" />
+            <Label fx:id="labelBreederAddress" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+            <Label text="Postnummer: " GridPane.rowIndex="4" GridPane.columnIndex="0" />
+            <Label fx:id="labelBreederZipCode" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+
+            <Label text="Telefon: " GridPane.rowIndex="5" GridPane.columnIndex="0" />
+            <Label fx:id="labelBreederPhoneNumber" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+
+        </GridPane>
+
+    </VBox>
+
+</GridPane>
