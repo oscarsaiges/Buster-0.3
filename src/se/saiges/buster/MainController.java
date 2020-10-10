@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import se.saiges.buster.animals.AnimalType;
 import se.saiges.buster.animals.Sex;
 import se.saiges.buster.animals.bunny.Bunny;
 import se.saiges.buster.animals.litters.Litter;
@@ -142,7 +141,7 @@ public class MainController {
 //    @FXML
 //    private ListView<Animal> animalListView;
     @FXML
-    private TreeView<Bunny> animalTreeView;
+    private TreeView<Displayable> animalTreeView;
 
     private static Breeder selectedBreeder;
     private  AnimalMain animalMain;
@@ -171,9 +170,15 @@ public class MainController {
         // Event listener
         // Show details of the selected animal in main animal viewer.
         animalTreeView.getSelectionModel().selectedItemProperty().addListener((observableValue, bunnyTreeItem, t1) -> {
-            if(!animalTreeView.getSelectionModel().isEmpty()){
-                showSelectedAnimal();
+            if(!animalTreeView.getSelectionModel().isEmpty() && t1.getValue().getClass().equals(Bunny.class)){
+                Bunny bunny = (Bunny) t1.getValue();
+                if(bunny.getBreederId() != 0) {
+                    showSelectedAnimal();
+                }
             }
+//            if(t1.getClass().equals(Litter.class)){
+//                System.out.println("Litter");
+//            }
         });
 
     }
@@ -196,7 +201,7 @@ public class MainController {
     }
 
     public void updateSelectedAnimal(){
-        Bunny bunny = animalMain.updateAnimal(animalTreeView.getSelectionModel().getSelectedItem().getValue());
+        Bunny bunny = animalMain.updateAnimal((Bunny) animalTreeView.getSelectionModel().getSelectedItem().getValue());
 
         if(bunny != null){
             DataBaseBunny.getInstance().updateBunny(bunny, selectedBreeder);
@@ -206,7 +211,7 @@ public class MainController {
     }
 
     public void removeSelectedAnimal(){
-        Bunny bunny = animalTreeView.getSelectionModel().getSelectedItem().getValue();
+        Bunny bunny = (Bunny) animalTreeView.getSelectionModel().getSelectedItem().getValue();
 
         if(bunny != null) {
             DataBaseBunny.getInstance().removeBunnyById(bunny.getId());
@@ -216,7 +221,7 @@ public class MainController {
     }
 
     public void addParents(){
-        Bunny child = animalTreeView.getSelectionModel().getSelectedItem().getValue();
+        Bunny child = (Bunny) animalTreeView.getSelectionModel().getSelectedItem().getValue();
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("views/add_parent_view.fxml"));
@@ -234,7 +239,7 @@ public class MainController {
     }
 
     public void checkIsOwned(){
-        Bunny bunny =  animalTreeView.getSelectionModel().getSelectedItem().getValue();
+        Bunny bunny = (Bunny) animalTreeView.getSelectionModel().getSelectedItem().getValue();
         bunny.setOwned(checkIsOwned.isSelected() ? 1 : 0);
         DataBaseBunny.getInstance().updateBunnyIsOwned(bunny.isOwned(), bunny.getId());
     }
@@ -244,11 +249,12 @@ public class MainController {
         Litter litter = litterMain.createLitter();
 
         if(litter != null) {
-            // A list of all bunny's created in the new litter.
+            // A list of all bunny's created in the new litter object.
             List<Bunny> litterList = new ArrayList<>(litter.getLitterList());
 
             // Writes the new litter to the database
             DataBaseLitter.getInstance().createLitter(litter);
+
             // Reads the new litter from the database, so that the new litter id can be written to the bunny's in the litter when they are created.
             Litter litterFinal = DataBaseLitter.getInstance().getLastEnteredLitter();
 
@@ -313,18 +319,37 @@ public class MainController {
         Bunny male = new Bunny();
         male.setName("Males");
 
-        TreeItem<Bunny> rootItem = new TreeItem<>(root);
-        TreeItem<Bunny> females = new TreeItem<>(female);
-        TreeItem<Bunny> males = new TreeItem<>(male);
+        TreeItem<Displayable> rootItem = new TreeItem<>(root);
+        TreeItem<Displayable> females = new TreeItem<>(female);
+        TreeItem<Displayable> males = new TreeItem<>(male);
 
-//        List<Bunny> bunnyList = DataBaseBunny.getInstance().getBunnyListByBreederId(selectedBreeder.getId());
+
+        List<Litter> litterList = new ArrayList<>(DataBaseLitter.getInstance().getLitters());
 
         bunnyList.forEach(bunny -> {
             if(bunny.getSex() == Sex.FEMALE){
-                females.getChildren().add(new TreeItem<>(bunny));
+                TreeItem<Displayable> selectedBunny = new TreeItem<>(bunny);
+
+                litterList.forEach(litter -> {
+                    if(litter.getMotherId() == bunny.getId()){
+                        selectedBunny.getChildren().add(new TreeItem<>(litter));
+                    }
+                });
+
+                females.getChildren().add(selectedBunny);
+
             }
             if(bunny.getSex() == Sex.MALE){
-                males.getChildren().add(new TreeItem<>(bunny));
+                TreeItem<Displayable> selectedBunny = new TreeItem<>(bunny);
+
+                litterList.forEach(litter -> {
+                    if(litter.getFatherId() == bunny.getId()){
+                        System.out.println(litter.getLitterId());
+                        selectedBunny.getChildren().add(new TreeItem<>(litter));
+                        System.out.println(selectedBunny.getChildren());
+                    }
+                });
+                males.getChildren().add((selectedBunny));
             }
         });
 
@@ -332,7 +357,6 @@ public class MainController {
         rootItem.getChildren().add(males);
         animalTreeView.setRoot(rootItem);
         animalTreeView.setShowRoot(false);
-//        animalTreeView.refresh();
     }
 
     private Dialog<ButtonType> dialogFactory(String title, FXMLLoader fxmlLoader){
@@ -351,8 +375,8 @@ public class MainController {
 
     private void showSelectedAnimal(){
         // change to a Switch later on?
-        if(!animalTreeView.getSelectionModel().isEmpty() && animalTreeView.getSelectionModel().getSelectedItem().getValue().getAnimalType() == AnimalType.BUNNY){
-            Bunny bunny = animalTreeView.getSelectionModel().getSelectedItem().getValue();
+        if(!animalTreeView.getSelectionModel().isEmpty() && animalTreeView.getSelectionModel().getSelectedItem().getValue().getClass().equals(Bunny.class)){
+            Bunny bunny = (Bunny) animalTreeView.getSelectionModel().getSelectedItem().getValue();
 
             // Sets the check menu item, with in the menu, to true or false
             checkIsOwned.setSelected(bunny.isOwned() == 1);

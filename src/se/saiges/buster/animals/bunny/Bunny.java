@@ -1,9 +1,10 @@
 package se.saiges.buster.animals.bunny;
 
+import se.saiges.buster.Displayable;
 import se.saiges.buster.animals.Animal;
 import se.saiges.buster.animals.EyeColor;
 
-public class Bunny extends Animal {
+public class Bunny extends Animal implements Displayable {
 
     private BunnyBreed bunnyBreed;
     private BunnyColor bunnyColor;

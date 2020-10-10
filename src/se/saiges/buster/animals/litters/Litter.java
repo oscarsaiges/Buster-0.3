@@ -1,12 +1,13 @@
 package se.saiges.buster.animals.litters;
 
+import se.saiges.buster.Displayable;
 import se.saiges.buster.animals.bunny.Bunny;
 import se.saiges.buster.modul.DataBaseBunny;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Litter {
+public class Litter implements Displayable {
 
     private int litterId;
     private int motherId;

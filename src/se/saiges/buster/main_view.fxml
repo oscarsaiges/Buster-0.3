@@ -246,7 +246,7 @@
                 <Separator orientation="VERTICAL"/>
                 <VBox prefWidth="250">
                     <HBox>
-                        <Label text="Grandmother: "/>
+                        <Label text="Grandfather: "/>
                         <Label fx:id="fGrandFatherNameLabel"/>
                     </HBox>
                     <HBox>
